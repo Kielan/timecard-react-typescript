@@ -206,9 +206,7 @@ const SquareDiv = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-width: 100%;
-	min-height: 100%;
-	max-height: 5.472rem;
+	height: 5.472rem;
 `
 const SquareActiveDiv = styled.div`
 	color: aquamarine;
