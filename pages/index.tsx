@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styled from 'styled-components'
-import NextShift from '../components/NextShift.tsx'
-import Calendar from '../components/Calendar.tsx'
-import Header from '../components/Header.tsx'
+import NextShift from '../components/NextShift'
+import Calendar from '../components/Calendar'
+import Header from '../components/Header'
 
 const HomeWrapper = styled.div`
   background-color: #1e2023;
