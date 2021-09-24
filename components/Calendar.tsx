@@ -26,11 +26,11 @@ export function maxDaysInMonthAndNextMonth(monthName) {
   return maxDaysInCurrentMonth
 }
 export function nextMonth(month) {
-	const nextMonthString = monthList[monthList.indexOf(monthList)+1]
+	const nextMonthString = monthList[(monthList.indexOf(month)+1)]
 	return nextMonthString
 }
-export function previousMonth() {
-	const previousMonthString = monthList[monthList.indexOf(monthList)-1]
+export function previousMonth(month) {
+	const previousMonthString = monthList[(monthList.indexOf(month)-1)]
 	return previousMonthString
 }
 export function scheduledShiftsSubtitleStringBuilder(currentDate) {
