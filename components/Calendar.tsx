@@ -144,9 +144,9 @@ function CalendarWeekdayHeader({weekday, weekdayIndex}) {
 					<span key={index}>{weekday[indexSum].charAt(0)}</span>
 				)
 			} else if(weekdayIndex+index < 7) {
-      	return (
-        	<span key={index}>{weekday[weekdayIndex+index].charAt(0)}</span>
-      	)
+				return (
+					<span key={index}>{weekday[weekdayIndex+index].charAt(0)}</span>
+				)
 			}
 		})
 	}
