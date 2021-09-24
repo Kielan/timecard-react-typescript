@@ -219,6 +219,7 @@ const SquareActiveDiv = styled.div`
 	max-width: 1em;
 	min-width: 100%;
 	min-height: 100%;
+	height: 5.472rem;
 	max-height: 5.472rem;
 `
 function CalendarSquare({ index, isCurrentDate, handleClick, dateNumber }) {
