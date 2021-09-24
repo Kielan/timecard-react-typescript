@@ -207,7 +207,7 @@ const SquareDiv = styled.div`
 	justify-content: center;
 	align-items: center;
 	min-width: 100%;
-	min-height: 5.472rem;
+	min-height: 100%;
 	max-height: 5.472rem;
 `
 const SquareActiveDiv = styled.div`
