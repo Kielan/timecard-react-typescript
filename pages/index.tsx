@@ -97,7 +97,7 @@ export default function Home() {
 			<AppHeader />
       <HomeMain>
 				<NextShift />
-        <Calendar scheduledShifts={scheduledShifts} />
+        <Calendar />
       </HomeMain>
     </HomeWrapper>
   )
