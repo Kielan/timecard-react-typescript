@@ -59,15 +59,15 @@ export default function NextShift({playerTurn, resetButton}) {
 			<NextShiftVisualGraphicWrapper>
 			<span>{`starts at Tue 8/31 3:00PM to 10:00PM`}</span>
 			<NextShiftGrid>
-					<NextShiftVisualGraphicWrapperSection1>
-						<TimeBegin>{`3:00pm`}</TimeBegin>
-						<TimeEnd>{`10:00pm`}</TimeEnd>	
-					</NextShiftVisualGraphicWrapperSection1>
-					<NextShiftVisualGraphicWrapperSection2>
-						<NextShiftVisualGraphicTimeBox>
-							<span>{`#202157`}</span>			
-						</NextShiftVisualGraphicTimeBox>
-					</NextShiftVisualGraphicWrapperSection2>
+				<NextShiftVisualGraphicWrapperSection1>
+					<TimeBegin>{`3:00pm`}</TimeBegin>
+					<TimeEnd>{`10:00pm`}</TimeEnd>	
+				</NextShiftVisualGraphicWrapperSection1>
+				<NextShiftVisualGraphicWrapperSection2>
+					<NextShiftVisualGraphicTimeBox>
+						<span>{`#202157`}</span>			
+					</NextShiftVisualGraphicTimeBox>
+				</NextShiftVisualGraphicWrapperSection2>
 			</NextShiftGrid>
 			</NextShiftVisualGraphicWrapper>
 		</NextShiftWrapper>
