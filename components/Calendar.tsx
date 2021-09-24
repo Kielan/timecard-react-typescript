@@ -19,13 +19,10 @@ const monthDayLengthDictionary = {
 const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 export function parseMonthFromDate(dateString) {
 	const monthName = monthAbbreviationDictionary[dateString.split(' ')[1]]
-	console.log('parseMonthFromDate ', monthName)
 	return monthName
 }
 export function maxDaysInMonthAndNextMonth(monthName) {
-//	console.log('maxDaysInMonthAndNextMonth monthName', monthName)
   const maxDaysInCurrentMonth = monthDayLengthDictionary[monthName]
-//	console.log('maxDaysInCurrentMonth ', maxDaysInCurrentMonth)
   return maxDaysInCurrentMonth
 }
 export function nextMonth(month) {
@@ -203,9 +200,6 @@ function Calendar({ calendarData, calendarDateInitialNumber, calendarMonthMaximu
     	</CalendarWrap>
 	)
 }
-//color: aquamarine;
-//background-color: #1e2023;
-//max-width: 1em;
 const SquareDiv = styled.div`
   background-color: #ffffff;
 	color: #1e2023;
@@ -227,7 +221,6 @@ const SquareActiveDiv = styled.div`
 	min-height: 5.472rem;
 	max-height: 5.472rem;
 `
-//height: 48px;
 function CalendarSquare({ index, isCurrentDate, handleClick, dateNumber }) {
   const onClick = (index) => {
     handleClick(index)
