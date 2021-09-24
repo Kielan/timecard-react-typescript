@@ -58,7 +58,7 @@ const CalendarContainerDiv = styled.div`
 	flex-direction: column;
 	align-items: center;
 `
-export default function CalendarContainer({playerTurn, resetButton}) {
+export default function CalendarContainer() {
 	var myDate = new Date()
 	var calendarEndDate = new Date()
 	calendarEndDate.setDate(calendarEndDate.getDate() + 28)
