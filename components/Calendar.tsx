@@ -124,7 +124,7 @@ const CalendarWeekdayHeaderWrapper = styled.div`
   height: 4vw;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 3px;
+  grid-gap: 1px;
   background-color: #1e2023;
 	border-bottom: 3px solid #ffffff;
 	span {
@@ -157,7 +157,7 @@ const CalendarWrap = styled.main`
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	grid-gap: 3px;
+	grid-gap: 1px;
 	background-color: #ffffff;
 	border-bottom: white solid;
 	border-left: #fff;
@@ -247,8 +247,8 @@ const DateMarkerDiv = styled.div`
 	justify-content: center;
   text-align: center;
   font-size: 2vw;
-	width: 100%;
-	height: 100%;
+	min-width: 100%;
+	min-height: 100%;
 `
 const DateMarker = ({ type }) => {
 	return (
