@@ -154,11 +154,11 @@ function CalendarWeekdayHeader({weekday, weekdayIndex}) {
 }
 
 const CalendarWrap = styled.main`
-  width: 100%;
-  display: grid;
+	width: 100%;
+	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-  grid-gap: 3px;
-  background-color: #ffffff;
+	grid-gap: 3px;
+	background-color: #ffffff;
 	border-bottom: white solid;
 	border-left: #fff;
 	border-right: #fff;
@@ -201,21 +201,21 @@ function Calendar({ calendarData, calendarDateInitialNumber, calendarMonthMaximu
 	)
 }
 const SquareDiv = styled.div`
-  background-color: #ffffff;
+	background-color: #ffffff;
 	color: #1e2023;
 	display: flex;
-  justify-content: center;
-  align-items: center;
+	justify-content: center;
+	align-items: center;
 	min-width: 100%;
 	min-height: 5.472rem;
 	max-height: 5.472rem;
 `
 const SquareActiveDiv = styled.div`
-  color: aquamarine;
-  background-color: green;
+	color: aquamarine;
+	background-color: green;
 	display: flex;
-  justify-content: center;
-  align-items: center;
+	justify-content: center;
+	align-items: center;
 	max-width: 1em;
 	min-width: 100%;
 	min-height: 5.472rem;
@@ -251,14 +251,7 @@ const DateMarkerDiv = styled.div`
 	height: 100%;
 `
 const DateMarker = ({ type }) => {
-//  const validTypes = ["active", "inactive"]
-
-//  if (!validTypes.includes(type)) {
-    // TODO: handle error for invalid move marker type
-//    type = false
-//  }
-
-  return (
-    <DateMarkerDiv>{type}</DateMarkerDiv>
-  )
+	return (
+		<DateMarkerDiv>{type}</DateMarkerDiv>
+	)
 }
