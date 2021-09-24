@@ -124,7 +124,7 @@ const CalendarWeekdayHeaderWrapper = styled.div`
   height: 4vw;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 1px;
+  grid-gap: 2px;
   background-color: #1e2023;
 	border-bottom: 3px solid #ffffff;
 	span {
@@ -157,7 +157,7 @@ const CalendarWrap = styled.main`
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	grid-gap: 1px;
+	grid-gap: 2px;
 	background-color: #ffffff;
 	border-bottom: white solid;
 	border-left: #fff;
@@ -218,7 +218,7 @@ const SquareActiveDiv = styled.div`
 	align-items: center;
 	max-width: 1em;
 	min-width: 100%;
-	min-height: 5.472rem;
+	min-height: 100%;
 	max-height: 5.472rem;
 `
 function CalendarSquare({ index, isCurrentDate, handleClick, dateNumber }) {
