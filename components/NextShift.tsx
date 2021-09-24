@@ -34,8 +34,8 @@ const NextShiftVisualGraphicWrapperSection1 = styled.div`
 const NextShiftVisualGraphicWrapperSection2 = styled.div`
 	background: repeating-linear-gradient(0deg, #808080, #808080 1px, #1e2023 1px, #1e2023 9px);
 	min-height: 12rem;
-  display: flex;
-  justify-content: center; 
+	display: flex;
+	justify-content: center; 
 `
 const NextShiftVisualGraphicTimeBox = styled.div`
 	min-height: 4rem;
@@ -43,7 +43,7 @@ const NextShiftVisualGraphicTimeBox = styled.div`
 	background-color: green;
 	margin-bottom: 2rem;
 	margin-top: 2rem;
-  max-width: 90%;
+	max-width: 90%;
 	min-width: 90%;
 	span {
 		color: #ffffff;
