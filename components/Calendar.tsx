@@ -164,7 +164,7 @@ const CalendarWrap = styled.main`
 	border-right: #fff;
 `
 const DayOfWeek = styled.div``
-function Calendar({ calendarData, calendarDateInitialNumber, calendarMonthMaximumDays, currentMonth, day, handleClick }) {
+function Calendar({ calendarData, calendarDateInitialNumber, calendarMonthMaximumDays, currentMonth, day, handleClick, nextMonth }) {
 	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 	const currentDay = weekday[day]
 	const weekdayIndex = weekday.indexOf(currentDay)
