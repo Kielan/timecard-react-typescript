@@ -52,7 +52,7 @@ const NextShiftVisualGraphicTimeBox = styled.div`
 		padding-top: 0.3rem;
 	}
 `
-export default function NextShift({playerTurn, resetButton}) {
+export default function NextShift() {
 	return (
 		<NextShiftWrapper>
 			<h1>{`Next Shift`}</h1>
