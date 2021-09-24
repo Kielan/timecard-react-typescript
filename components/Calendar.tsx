@@ -109,7 +109,7 @@ const CalendarScheduledShiftsSubtitleDiv = styled.div`
 	display: flex;
 	color: #808080;
 `
-function CalendarScheduledShifts({ calendarEndDate, CurrentDayOfTheWeek, currentDate }) {
+function CalendarScheduledShifts({ calendarEndDate, calendarDateInitialNumber, currentDayOfTheWeek, currentDate }) {
 	const dateRangeBegin = scheduledShiftsSubtitleStringBuilder(currentDate)
 	const dateRangeEnd = scheduledShiftsSubtitleStringBuilder(calendarEndDate)
 	return (
