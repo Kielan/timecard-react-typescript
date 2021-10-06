@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { theme } from '../theme'
 
 const NextShiftWrapper = styled.div`
 	margin: 0rem .5rem;
-	h1 {
+	h2 {
+		color: #808080;
+	}
+	h3 {
 		color: #808080;
 	}
 `
@@ -33,14 +37,14 @@ const NextShiftVisualGraphicWrapperSection1 = styled.div`
 `
 const NextShiftVisualGraphicWrapperSection2 = styled.div`
 	background: repeating-linear-gradient(0deg, #808080, #808080 1px, #1e2023 1px, #1e2023 9px);
-	min-height: 12rem;
+	min-height: 11.3rem;
 	display: flex;
 	justify-content: center; 
 `
 const NextShiftVisualGraphicTimeBox = styled.div`
 	min-height: 4rem;
 	border-radius: .2rem;
-	background-color: green;
+	background-color: ${theme.colors.green};
 	margin-bottom: 2rem;
 	margin-top: 2rem;
 	max-width: 90%;
@@ -55,7 +59,7 @@ const NextShiftVisualGraphicTimeBox = styled.div`
 export default function NextShift() {
 	return (
 		<NextShiftWrapper>
-			<h1>{`Next Shift`}</h1>
+			<h2>{`Next Shift`}</h2>
 			<NextShiftVisualGraphicWrapper>
 			<span>{`starts at Tue 8/31 3:00PM to 10:00PM`}</span>
 			<NextShiftGrid>

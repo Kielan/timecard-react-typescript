@@ -101,7 +101,7 @@ const CalendarScheduledShiftsWrapper = styled.div`
 	flex-direction: column;
 	color: #1e2023;
 `
-const CalendarScheduledShiftsTitleDiv = styled.div`
+const CalendarScheduledShiftsTitleDiv = styled.h2`
 	display: flex;
 	color: #808080;
 `
@@ -127,12 +127,13 @@ const CalendarWeekdayHeaderWrapper = styled.div`
   grid-gap: 2px;
   background-color: #1e2023;
 	border-bottom: 3px solid #ffffff;
-	span {
+`
+const CalendarWeekdayHeaderTitleSpan = styled.div`
 		color: #ffffff;
 		display: flex;
+		font-weight: 800;
 		justify-content: center;
 		align-items: center;
-	}
 `
 function CalendarWeekdayHeader({weekday, weekdayIndex}) {
 	return <CalendarWeekdayHeaderWrapper>
@@ -141,11 +142,11 @@ function CalendarWeekdayHeader({weekday, weekdayIndex}) {
 			if(weekdayIndex+index >= 7) {
 				const indexSum = weekdayIndex+index-7
 				return (
-					<span key={index}>{weekday[indexSum].charAt(0)}</span>
+					<CalendarWeekdayHeaderTitleSpan key={index}>{weekday[indexSum].charAt(0)}</CalendarWeekdayHeaderTitleSpan>
 				)
 			} else if(weekdayIndex+index < 7) {
 				return (
-					<span key={index}>{weekday[weekdayIndex+index].charAt(0)}</span>
+					<CalendarWeekdayHeaderTitleSpan key={index}>{weekday[weekdayIndex+index].charAt(0)}</CalendarWeekdayHeaderTitleSpan>
 				)
 			}
 		})
@@ -206,7 +207,7 @@ const SquareDiv = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 5.472rem;
+	height: 6rem;
 `
 const SquareActiveDiv = styled.div`
 	color: aquamarine;
@@ -217,8 +218,8 @@ const SquareActiveDiv = styled.div`
 	max-width: 1em;
 	min-width: 100%;
 	min-height: 100%;
-	height: 5.472rem;
-	max-height: 5.472rem;
+	height: 6rem;
+	max-height: 6rem;
 `
 function CalendarSquare({ index, isCurrentDate, handleClick, dateNumber }) {
   const onClick = (index) => {
