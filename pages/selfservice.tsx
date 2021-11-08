@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styled from 'styled-components'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { theme } from '../theme'
 import { AppHeader, AppFooter } from './index'
 
@@ -34,6 +34,8 @@ export default function SelfService() {
 					toggleStateLeft={() => toggleState(false)}
 					toggleStateRight={() => toggleState(true)}
 				/>
+				{!isToggle ? <AvailabilityListView /> : <button>Login</button>}
+				<FixedButton onClick={() => console.log('propose change onClick')}>{`Propose Change`}</FixedButton>
 			<AppFooter />	
 		</SelfServiceWrapper>
 	)
@@ -42,8 +44,8 @@ export default function SelfService() {
 const ToggleSwitchField = styled.form`
   padding: 40px;
   overflow: hidden;
-  height: 800px;
-  margin-top: 250px;
+  height: 40px;
+  margin-top: 100px;
 `
 const ToggleSwitchInput = styled.input`
     position: absolute !important;
@@ -117,4 +119,87 @@ function ToggleSwitch({isToggle, leftLabel, name, rightLabel, toggleStateLeft, t
         </ToggleSwitchLabel>
       </ToggleSwitchField>
     )
+}
+const AvailabilityTable = styled.div`
+	width: 680px;
+	padding-bottom: 200px;
+`
+const AvailabilityRow = styled.div`
+	background: ${(props) => props.lightBackground ? theme.colors.backgroundLighter : theme.colors.backgroundDark};
+	display: flex;
+	justify-content: space-between;
+	padding-left: 6px;
+	padding-right: 6px;
+`
+const AvailabilityHeader = styled.h4`
+  color: ${theme.colors.green};
+`
+const AvailabilityParagraph = styled.p`
+  color: ${theme.colors.textLight};
+`
+function AvailabilityListView({}) {
+	return (
+		<AvailabilityTable>
+			<AvailabilityRow>
+				<AvailabilityHeader>{`Sunday`}</AvailabilityHeader>
+				<AvailabilityParagraph>{`No Availability Specified`}</AvailabilityParagraph>
+			</AvailabilityRow>
+			<AvailabilityRow lightBackground={true}>
+				<AvailabilityHeader>{`Monday`}</AvailabilityHeader>
+				<AvailabilityParagraph>{`No Availability Specified`}</AvailabilityParagraph>
+			</AvailabilityRow>
+			<AvailabilityRow>
+				<AvailabilityHeader>{`Tuesday`}</AvailabilityHeader>
+				<AvailabilityParagraph>{`No Availability Specified`}</AvailabilityParagraph>
+			</AvailabilityRow>
+			<AvailabilityRow lightBackground={true}>
+				<AvailabilityHeader>{`Wednesday`}</AvailabilityHeader>
+				<AvailabilityParagraph>{`No Availability Specified`}</AvailabilityParagraph>
+			</AvailabilityRow>
+			<AvailabilityRow>
+				<AvailabilityHeader>{`Thursday`}</AvailabilityHeader>
+				<AvailabilityParagraph>{`No Availability Specified`}</AvailabilityParagraph>
+			</AvailabilityRow>
+			<AvailabilityRow lightBackground={true}>
+				<AvailabilityHeader>{`Friday`}</AvailabilityHeader>
+				<AvailabilityParagraph>{`No Availability Specified`}</AvailabilityParagraph>
+			</AvailabilityRow>
+			<AvailabilityRow>
+				<AvailabilityHeader>{`Saturday`}</AvailabilityHeader>
+				<AvailabilityParagraph>{`No Availability Specified`}</AvailabilityParagraph>
+			</AvailabilityRow>
+		</AvailabilityTable>
+	)
+}
+
+const FixedButton = styled.button<ButtonComponentProps>`
+  padding: 5px 12px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: ${theme.colors.green}; 
+  border: 0px;
+  border-radius: 3px;
+  appearance: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 180px;
+  right: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 40px;
+  width: 500px;      /* Give it the desired width */ 
+  margin: auto;      /* Center it */
+  max-width: 100%;   /* Make it fit window if under 500px */ 
+	z-index: 20;
+`
+export type ButtonComponentProps = {
+  children?: HTMLCollection | string,
+  onClick: (e?: React.MouseEvent) => void
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+const ButtonComponent = ({ onClick, children, ...otherProps }: ButtonComponentProps) => {
+  return (
+    <FixedButton onClick={onClick} {...otherProps}>{children}</FixedButton>
+  );
 }
