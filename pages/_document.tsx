@@ -2,7 +2,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 //import styled from 'styled-components'
 import tw from 'twin.macro'
-
 //const DocumentBody = styled.body`
 //	margin: 0;	
 //`

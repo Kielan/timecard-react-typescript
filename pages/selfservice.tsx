@@ -55,28 +55,26 @@ const ToggleSwitchInput = styled.input`
     border: 0;
     overflow: hidden;
   	&:checked + label {
-    	background-color: #1955a5;
+		  background-color: ${theme.colors.backgroundLighter};
     	color: #fff;
     	box-shadow: none;
   	}
 		&:unchecked + label {
-  		background-color: #e4e4e4;
-		  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+		  background-color: ${theme.colors.backgroundLighter};
   		color: rgba(0, 0, 0, 0.6);
 		}			
 `
 const ToggleSwitchLabel = styled.label`
   display: inline-block;
   width: 100px;
-  background-color: #e4e4e4;
-  color: rgba(0, 0, 0, 0.6);
+  background-color: ${theme.colors.backgroundLight};
+  color: ${theme.colors.textLight};
   font-size: 14px;
   font-weight: normal;
   text-align: center;
   text-shadow: none;
   padding: 14px 34px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.1s ease-in-out;
   &:hover {
     cursor: pointer;

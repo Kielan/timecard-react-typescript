@@ -11,7 +11,7 @@ const breakpoints = [
 ]
 
 const toEm = (size: number) => size / 16 + 'em'
-
+/*
 const mediaQueries = breakpoints.reduce(
   (acc, [label, size], i) => ({
     ...acc,
@@ -33,3 +33,4 @@ const mediaQueries = breakpoints.reduce(
 )
 
 export default mediaQueries
+*/
