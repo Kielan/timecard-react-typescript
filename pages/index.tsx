@@ -23,21 +23,22 @@ const ModalContent = ({ transition, onCloseClicked }) => {
   const [toggle, setToggle] = React.useState(false);
 
   return (
-    <>
+	<>
 	<div class="flex mx-auto">
 	<div class="flex w-full border-b border-gray-900">
 		<button class="flex items-center justify-center px-4">
-		<svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-			<path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
-			</path>
-    		</svg>
-        	</button>
-        	<input type="text" class="px-4 py-5 w-full bg-gray-900" placeholder="Search..."/>
-		<Popup trigger={<button class="flex items-center justify-center px-4">
-				<svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-					<path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
-				</svg>
-				</button>}
+			<svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+				<path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+				</path>
+			</svg>
+		</button>
+		<input type="text" class="px-4 py-5 w-full bg-gray-900" placeholder="Search..."/>
+		<Popup 
+			trigger={<button class="flex items-center justify-center px-4">
+								<svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
+								</svg>
+							</button>}
 			position={['left top', 'left top']}
 			on="click"
 			mouseLeaveDelay={300}
@@ -45,8 +46,7 @@ const ModalContent = ({ transition, onCloseClicked }) => {
 			contentStyle={{ padding: '0px', border: 'none' }}
 			onClose={() => console.log('close ')}
 			onOpen={() => console.log('open ')}
-			arrow={false}
-		>
+			arrow={false}>
 			<div className="menu">
 				<div className="menu-item">All Notifications</div>
 				<div className="menu-item">Critical Notifications</div>
@@ -57,35 +57,35 @@ const ModalContent = ({ transition, onCloseClicked }) => {
 				<div className="menu-item">Read/Archived Notifications</div>
 			</div>
 		</Popup>
+	</div>
+	</div>
+	<div class="font-sans flex items-center justify-center bg-blue-darker w-full">
+		<div class="overflow-hidden bg-gray-600 max-w w-full shadow-lg leading-normal">
+			<a class="cursor-pointer flex p-4">
+				<div class="w-8 h-10 text-center py-1">
+					<p class="text-5xl p-0 text-green-dark">&bull;</p>
+				</div>
+				<div class="w-5 h-10 py-3 px-6 w-full h-full">
+					<p class="font-bold text-lg mb-1 text-white group-hover:text-white">Create from scratch</p>
+					<p class="text-grey-darker mb-2 group-hover:text-white">Create a repository without any source code</p>
+					<p class="text-grey-darker">a day ago</p>
+				</div>
+			</a>
+			{/*<a href="#" class="block group hover:bg-blue p-4">
+				<p class="font-bold text-lg mb-1 text-black group-hover:text-white">Fork</p>
+				<p class="text-grey-darker mb-2 group-hover:text-white">Start a project base on the source of an existing one.</p>
+			</a>*/}
 		</div>
+	</div>
+	{toggle ? (
+		<div className="mt-4">
+			{[...Array(30)].map((e, i) => (
+				<p key={i} className="mb-2">
+					Are you using react-simple-hook-modal yet?
+				</p>
+			))}
 		</div>
-		<div class="font-sans flex items-center justify-center bg-blue-darker w-full">
-			<div class="overflow-hidden bg-gray-600 max-w w-full shadow-lg leading-normal">
-				<a class="cursor-pointer flex p-4">
-					<div class="w-8 h-10 text-center py-1">
-						<p class="text-5xl p-0 text-green-dark">&bull;</p>
-					</div>
-					<div class="w-5 h-10 py-3 px-6 w-full h-full">
-						<p class="font-bold text-lg mb-1 text-white group-hover:text-white">Create from scratch</p>
-						<p class="text-grey-darker mb-2 group-hover:text-white">Create a repository without any source code</p>
-						<p class="text-grey-darker">a day ago</p>
-					</div>
-				</a>
-				{/*<a href="#" class="block group hover:bg-blue p-4">
-					<p class="font-bold text-lg mb-1 text-black group-hover:text-white">Fork</p>
-					<p class="text-grey-darker mb-2 group-hover:text-white">Start a project base on the source of an existing one.</p>
-				</a>*/}
-			</div>
-		</div>
-	      	{toggle ? (
-			<div className="mt-4">
-			  {[...Array(30)].map((e, i) => (
-			    <p key={i} className="mb-2">
-			      Are you using react-simple-hook-modal yet?
-			    </p>
-			  ))}
-			</div>
-	      	) : null}
+	) : null}
 	</>
   );
 };
