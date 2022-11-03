@@ -1,45 +1,75 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { theme } from "../theme";
 
-const monthAbbreviationDictionary = {Jan: 'January', Feb: 'February', Mar: 'March', Apr: 'April', May: 'May', Jun: 'June', Jul: 'July', Aug: 'August', Sep: 'September', Oct: 'October', Nov: 'November', Dec: 'December'}
+const monthAbbreviationDictionary = {
+  Jan: "January",
+  Feb: "February",
+  Mar: "March",
+  Apr: "April",
+  May: "May",
+  Jun: "June",
+  Jul: "July",
+  Aug: "August",
+  Sep: "September",
+  Oct: "October",
+  Nov: "November",
+  Dec: "December"
+};
 const monthDayLengthDictionary = {
-  'January': 31,
-  'February': 28,
-  'March': 31,
-  'April': 30,
-  'May': 31,
-  'June': 30,
-  'July': 31,
-  'August': 31,
-  'September': 30,
-  'October': 31,
-  'November': 30,
-  'December': 31
-}
-const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  January: 31,
+  February: 28,
+  March: 31,
+  April: 30,
+  May: 31,
+  June: 30,
+  July: 31,
+  August: 31,
+  September: 30,
+  October: 31,
+  November: 30,
+  December: 31
+};
+const monthList = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 export function parseMonthFromDate(dateString) {
-	const monthName = monthAbbreviationDictionary[dateString.split(' ')[1]]
-	return monthName
+  const monthName = monthAbbreviationDictionary[dateString.split(" ")[1]];
+  return monthName;
 }
 export function maxDaysInMonthAndNextMonth(monthName) {
-  const maxDaysInCurrentMonth = monthDayLengthDictionary[monthName]
-  return maxDaysInCurrentMonth
+  const maxDaysInCurrentMonth = monthDayLengthDictionary[monthName];
+  return maxDaysInCurrentMonth;
 }
 export function nextMonth(month) {
-	const nextMonthString = monthList[(monthList.indexOf(month)+1)]
-	return nextMonthString
+  const nextMonthString = monthList[monthList.indexOf(month) + 1];
+  return nextMonthString;
 }
 export function previousMonth(month) {
-	const previousMonthString = monthList[(monthList.indexOf(month)-1)]
-	return previousMonthString
+  const previousMonthString = monthList[monthList.indexOf(month) - 1];
+  return previousMonthString;
 }
 export function scheduledShiftsSubtitleStringBuilder(currentDate) {
-	/* example 
+  /* example 
 		 input: September Thu Sep 16 2021 10:29:46 GMT-0700 (Pacific Daylight Time)
 		 output: September 16
 	*/
-	const returnValue = monthAbbreviationDictionary[currentDate.split(' ')[1]] + ' ' + currentDate.split(' ')[2]
-	return returnValue
+  const returnValue =
+    monthAbbreviationDictionary[currentDate.split(" ")[1]] +
+    " " +
+    currentDate.split(" ")[2];
+  return returnValue;
 }
 
 const Header = styled.div`
@@ -47,77 +77,112 @@ const Header = styled.div`
   text-align: center;
   grid-column: 2 / span 1;
   margin-bottom: 5em;
-`
+`;
 const CalendarContainerWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	margin: 0rem .5rem;
-`
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 0rem;
+`;
 const CalendarContainerDiv = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`
-export default function CalendarContainer() {
-	var myDate = new Date()
-	var calendarEndDate = new Date()
-	calendarEndDate.setDate(calendarEndDate.getDate() + 28)
-	const myDay = myDate.getDay()
-	const calendarDateInitialNumber = myDate.toString().split(' ')[2]
-  const [calendarData, setCalendarData] = useState(Array(28).fill(null))
-  const handleClick = position => {
-    if (calendarData[position] != null)
-      return
-	}
-  var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  const currentDay = weekday[myDay]
-  const weekdayIndex = weekday.indexOf(currentDay)
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export default function CalendarContainer({ scheduledShiftList }) {
+  var myDate = new Date();
+  var calendarEndDate = new Date();
+  calendarEndDate.setDate(calendarEndDate.getDate() + 28);
+  const myDay = myDate.getDay();
+  const calendarDateInitialNumber = myDate.toString().split(" ")[2];
+  const [calendarData, setCalendarData] = useState(Array(28).fill(null));
+  const handleClick = (position) => {
+    if (calendarData[position] != null) return;
+  };
+  var weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  const currentDay = weekday[myDay];
+  const weekdayIndex = weekday.indexOf(currentDay);
+
   return (
-		<CalendarContainerWrapper>
-			<CalendarScheduledShifts
-				calendarDateInitialNumber={calendarDateInitialNumber}
-				currentDayOfTheWeek={currentDay}
-				currentDate={myDate.toString()}
-				calendarEndDate={calendarEndDate.toString()}
-			/>
-			<CalendarContainerDiv>
-				<CalendarWeekdayHeader weekday={weekday} weekdayIndex={weekdayIndex} />
-    		<Calendar
-					calendarData={calendarData}
-					calendarDateInitialNumber={calendarDateInitialNumber}
-					calendarMonthMaximumDays={maxDaysInMonthAndNextMonth(parseMonthFromDate(myDate.toString()))}
-					currentMonth={myDate.toString().split(' ')[2]}
-					nextMonth={nextMonth(myDate.toString().split(' ')[2])}
-					previousMonth={previousMonth(myDate.toString().split(' ')[2])}
-					day={myDay}
-					handleClick={handleClick}
-				/>
-			</CalendarContainerDiv>
-		</CalendarContainerWrapper>
-	)
+    <CalendarContainerWrapper>
+      <CalendarScheduledShifts
+        calendarDateInitialNumber={calendarDateInitialNumber}
+        currentDayOfTheWeek={currentDay}
+        currentDate={myDate.toString()}
+        calendarEndDate={calendarEndDate.toString()}
+      />
+      <CalendarContainerDiv>
+        <CalendarWeekdayHeader weekday={weekday} weekdayIndex={weekdayIndex} />
+        <Calendar
+          calendarData={calendarData}
+          calendarDateInitialNumber={calendarDateInitialNumber}
+          calendarMonthMaximumDays={maxDaysInMonthAndNextMonth(
+            parseMonthFromDate(myDate.toString())
+          )}
+          currentMonth={myDate.toString().split(" ")[2]}
+          nextMonth={nextMonth(myDate.toString().split(" ")[2])}
+          previousMonth={previousMonth(myDate.toString().split(" ")[2])}
+          day={myDay}
+          handleClick={handleClick}
+          scheduledShiftList={scheduledShiftList}
+        />
+      </CalendarContainerDiv>
+    </CalendarContainerWrapper>
+  );
 }
+CalendarContainer.defaultProps = {
+  scheduledShiftList: [
+    {
+      dateTime: "Wed 11/2 8:00AM to 3:30PM",
+      location: " 2901 Reynolda Rd, Winston-Salem, NC",
+      storeNumber: "#202967"
+    },
+    {
+      dateTime: "Wed 11/3 3:00PM to 9:30PM",
+      location: " 2901 Reynolda Rd, Winston-Salem, NC",
+      storeNumber: "#202967"
+    },
+    {
+      dateTime: "Wed 11/5 8:30AM to 3:00PM",
+      location: " 2901 Reynolda Rd, Winston-Salem, NC",
+      storeNumber: "#202967"
+    }
+  ]
+};
 const CalendarScheduledShiftsWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	color: #1e2023;
-`
+  display: flex;
+  flex-direction: column;
+  color: #1e2023;
+`;
 const CalendarScheduledShiftsTitleDiv = styled.h2`
-	display: flex;
-	color: #808080;
-`
+  display: flex;
+  color: #808080;
+`;
 const CalendarScheduledShiftsSubtitleDiv = styled.div`
-	display: flex;
-	color: #808080;
-`
-function CalendarScheduledShifts({ calendarEndDate, calendarDateInitialNumber, currentDayOfTheWeek, currentDate }) {
-	const dateRangeBegin = scheduledShiftsSubtitleStringBuilder(currentDate)
-	const dateRangeEnd = scheduledShiftsSubtitleStringBuilder(calendarEndDate)
-	return (
-		<CalendarScheduledShiftsWrapper>
-			<CalendarScheduledShiftsTitleDiv>{`Scheduled Shifts`}</CalendarScheduledShiftsTitleDiv>
-			<CalendarScheduledShiftsSubtitleDiv>{`${dateRangeBegin} - ${dateRangeEnd}`}</CalendarScheduledShiftsSubtitleDiv>
-		</CalendarScheduledShiftsWrapper>
-	)
+  display: flex;
+  color: #808080;
+`;
+function CalendarScheduledShifts({
+  calendarEndDate,
+  calendarDateInitialNumber,
+  currentDayOfTheWeek,
+  currentDate
+}) {
+  const dateRangeBegin = scheduledShiftsSubtitleStringBuilder(currentDate);
+  const dateRangeEnd = scheduledShiftsSubtitleStringBuilder(calendarEndDate);
+  return (
+    <CalendarScheduledShiftsWrapper>
+      <CalendarScheduledShiftsTitleDiv>{`Scheduled Shifts`}</CalendarScheduledShiftsTitleDiv>
+      <CalendarScheduledShiftsSubtitleDiv>{`${dateRangeBegin} - ${dateRangeEnd}`}</CalendarScheduledShiftsSubtitleDiv>
+    </CalendarScheduledShiftsWrapper>
+  );
 }
 const CalendarWeekdayHeaderWrapper = styled.div`
   width: 100%;
@@ -125,133 +190,187 @@ const CalendarWeekdayHeaderWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 2px;
-  background-color: #1e2023;
-	border-bottom: 3px solid #ffffff;
-`
+  background-color: ${theme.colors.backgroundDark};
+  border-bottom: 1px solid #ffffff;
+`;
 const CalendarWeekdayHeaderTitleSpan = styled.div`
-		color: #ffffff;
-		display: flex;
-		font-weight: 800;
-		justify-content: center;
-		align-items: center;
-`
-function CalendarWeekdayHeader({weekday, weekdayIndex}) {
-	return <CalendarWeekdayHeaderWrapper>
-	{
-		[...Array(7)].map((elementInArray, index) => {
-			if(weekdayIndex+index >= 7) {
-				const indexSum = weekdayIndex+index-7
-				return (
-					<CalendarWeekdayHeaderTitleSpan key={index}>{weekday[indexSum].charAt(0)}</CalendarWeekdayHeaderTitleSpan>
-				)
-			} else if(weekdayIndex+index < 7) {
-				return (
-					<CalendarWeekdayHeaderTitleSpan key={index}>{weekday[weekdayIndex+index].charAt(0)}</CalendarWeekdayHeaderTitleSpan>
-				)
-			}
-		})
-	}
-	</CalendarWeekdayHeaderWrapper>
+  color: #ffffff;
+  display: flex;
+  font-weight: 800;
+  justify-content: center;
+  align-items: center;
+`;
+function CalendarWeekdayHeader({ weekday, weekdayIndex }) {
+  return (
+    <CalendarWeekdayHeaderWrapper>
+      {[...Array(7)].map((elementInArray, index) => {
+        if (weekdayIndex + index >= 7) {
+          const indexSum = weekdayIndex + index - 7;
+          return (
+            <CalendarWeekdayHeaderTitleSpan key={index}>
+              {weekday[indexSum].charAt(0)}
+            </CalendarWeekdayHeaderTitleSpan>
+          );
+        } else if (weekdayIndex + index < 7) {
+          return (
+            <CalendarWeekdayHeaderTitleSpan key={index}>
+              {weekday[weekdayIndex + index].charAt(0)}
+            </CalendarWeekdayHeaderTitleSpan>
+          );
+        }
+      })}
+    </CalendarWeekdayHeaderWrapper>
+  );
 }
 
 const CalendarWrap = styled.main`
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	grid-gap: 2px;
-	background-color: #ffffff;
-	border-bottom: white solid;
-	border-left: #fff;
-	border-right: #fff;
-`
-const DayOfWeek = styled.div``
-function Calendar({ calendarData, calendarDateInitialNumber, calendarMonthMaximumDays, currentMonth, day, handleClick, nextMonth, previousMonth }) {
-	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-	const currentDay = weekday[day]
-	const weekdayIndex = weekday.indexOf(currentDay)
-	const printWeekDayHeaders = () => {
-		for(var i = 0; i < 7; i++) {
-    	return <span>weekday[weekdayIndex+i].charAt(0)</span>
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1px;
+  background-color: #ffffff;
+  border-bottom: white solid 1px;
+  border-left: #fff;
+  border-right: #fff;
+`;
+const DayOfWeek = styled.div``;
+function Calendar({
+  calendarData,
+  calendarDateInitialNumber,
+  calendarMonthMaximumDays,
+  currentMonth,
+  day,
+  handleClick,
+  nextMonth,
+  previousMonth,
+  scheduledShiftList
+}) {
+  var weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  const currentDay = weekday[day];
+  const weekdayIndex = weekday.indexOf(currentDay);
+  const printWeekDayHeaders = () => {
+    for (var i = 0; i < 7; i++) {
+      return <span>weekday[weekdayIndex+i].charAt(0)</span>;
     }
-	}
-	return (
-    	<CalendarWrap>
-    	{calendarData && calendarData.map((dateMarker, index) => {
-				let dateNumber = parseInt(calendarDateInitialNumber) + index
-				const isCurrentDate = dateNumber === calendarDateInitialNumber
-				if (calendarMonthMaximumDays >= dateNumber) {
-      		return <CalendarSquare
-                	index={index}
-									isCurrentDate={isCurrentDate}
-                	key={index}
-                	dateNumber={dateNumber}
-                	handleClick={handleClick}
-     						/>
-				} else {
-					dateNumber = (parseInt(calendarDateInitialNumber) + index) - calendarMonthMaximumDays;
-					return <CalendarSquare
-                  index={index}
-									isCurrentDate={isCurrentDate}
-                  key={index}
-                  dateNumber={dateNumber}
-                  handleClick={handleClick}
-                />
-				}
-    	})}
-    	</CalendarWrap>
-	)
+  };
+  function getDateFromDateTimeString(dateTimeString) {
+    const stringArrBySpace = dateTimeString.split(" ")[1];
+    const DayOfMonth = stringArrBySpace.split("/")[1];
+    return DayOfMonth;
+  }
+  const scheduledDateList = scheduledShiftList.map((shift, index) => {
+    const dateOfMonth = getDateFromDateTimeString(shift.dateTime);
+    return dateOfMonth;
+  });
+  const calendarList = calendarData.map((dateMarker, index) => {
+    let dateNumber = parseInt(calendarDateInitialNumber) + index;
+    const scheduled = scheduledDateList
+      .map((scheduledDate) => {
+        if (Number(scheduledDate) == dateNumber) {
+          return true;
+        } else {
+          false;
+        }
+      })
+      .filter((x) => x === true);
+
+    const dateHasScheduledWorkShift = scheduled[0] === true ? true : false;
+    const isCurrentDate = dateNumber === calendarDateInitialNumber;
+
+    if (calendarMonthMaximumDays >= dateNumber) {
+      return (
+        <CalendarSquare
+          index={index}
+          isCurrentDate={isCurrentDate}
+          key={index}
+          dateNumber={dateNumber}
+          handleClick={handleClick}
+          scheduled={dateHasScheduledWorkShift}
+        />
+      );
+    } else {
+      dateNumber =
+        parseInt(calendarDateInitialNumber) + index - calendarMonthMaximumDays;
+      return (
+        <CalendarSquare
+          index={index}
+          isCurrentDate={isCurrentDate}
+          key={index}
+          dateNumber={dateNumber}
+          handleClick={handleClick}
+          scheduled={dateHasScheduledWorkShift}
+        />
+      );
+    }
+  });
+  return <CalendarWrap>{calendarData && calendarList}</CalendarWrap>;
 }
 const SquareDiv = styled.div`
-	background-color: #ffffff;
-	color: #1e2023;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 6rem;
-`
+  background-color: ${(props) => (props.scheduled ? "#242527" : "#ffffff")};
+  color: #1e2023;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+`;
 const SquareActiveDiv = styled.div`
-	color: aquamarine;
-	background-color: green;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	max-width: 1em;
-	min-width: 100%;
-	min-height: 100%;
-	height: 6rem;
-	max-height: 6rem;
-`
-function CalendarSquare({ index, isCurrentDate, handleClick, dateNumber }) {
+  color: aquamarine;
+  background-color: ${(props) => (props.scheduled ? "#242527" : "#ffffff")};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1em;
+  min-width: 100%;
+  min-height: 100%;
+  height: 3rem;
+  max-height: 3rem;
+`;
+function CalendarSquare({
+  index,
+  isCurrentDate,
+  handleClick,
+  dateNumber,
+  scheduled
+}) {
   const onClick = (index) => {
-    handleClick(index)
+    handleClick(index);
+  };
+
+  if (isCurrentDate == true) {
+    return (
+      <SquareActiveDiv onClick={() => onClick(index)}>
+        <DateMarker type={dateNumber} scheduled={scheduled} />
+      </SquareActiveDiv>
+    );
+  } else {
+    return (
+      <SquareDiv onClick={() => onClick(index)}>
+        <DateMarker dateNumber={dateNumber} scheduled={scheduled} />
+      </SquareDiv>
+    );
   }
-	if(isCurrentDate == true) {
-  	return (
-    	<SquareActiveDiv onClick={() => onClick(index)} >
-      	<DateMarker type={dateNumber} />
-    	</SquareActiveDiv>
-  	)
-	} else {
-  	return (
-    	<SquareDiv onClick={() => onClick(index)} >
-      	<DateMarker type={dateNumber} />
-    	</SquareDiv>
-  	)
-	}
 }
 const DateMarkerDiv = styled.div`
-  background-color: #1e2023;
-	color: #808080;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  background-color: ${(props) =>
+    props.scheduled ? theme.colors.green : theme.colors.backgroundDarker};
+  color: ${(props) =>
+    props.scheduled ? theme.colors.backgroundDarker : theme.colors.textDark};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-size: 2vw;
-	min-width: 100%;
-	min-height: 100%;
-`
-const DateMarker = ({ type }) => {
-	return (
-		<DateMarkerDiv>{type}</DateMarkerDiv>
-	)
-}
+  min-width: 100%;
+  min-height: 100%;
+`;
+const DateMarker = ({ dateNumber, scheduled }) => {
+  return <DateMarkerDiv scheduled={scheduled}>{dateNumber}</DateMarkerDiv>;
+};
