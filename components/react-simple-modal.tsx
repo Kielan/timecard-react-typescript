@@ -71,7 +71,7 @@ export interface ModalProps {
   onBackdropClick?: () => void;
   footer?: React.ReactNode;
   transition?: ModalTransition;
-	transformDistanceOffset?: number;
+  transformDistanceOffset?: number;
   modalClassName?: string;
   modalZIndex?: number;
 }
@@ -87,19 +87,16 @@ function hasDOM() {
 export const Modal: React.FC<ModalProps> = modal => {
   const { addOrUpdate, remove, getStaggerPixels } = useModalContext();
   const {
-		id,
-		isOpen,
-		transformDistanceOffsetX,
-		transformDistanceOffsetY
-	} = modal;
-
+    id,
+    isOpen,
+    transformDistanceOffsetX,
+    transformDistanceOffsetY
+  } = modal;
   const container = hasDOM()
     ? document.getElementById('react-simple-modal-container')
     : null;
-
-	const transformDistanceX = transformDistanceOffsetX ? getStaggerPixels(id) + transformDistanceOffsetX : getStaggerPixels(id);
-
-	const transformDistanceY = transformDistanceOffsetY ? getStaggerPixels(id) + transformDistanceOffsetY : getStaggerPixels(id);
+  const transformDistanceX = transformDistanceOffsetX ? getStaggerPixels(id) + transformDistanceOffsetX : getStaggerPixels(id);
+  const transformDistanceY = transformDistanceOffsetY ? getStaggerPixels(id) + transformDistanceOffsetY : getStaggerPixels(id);
 
   useEffect(() => {
     isOpen ? addOrUpdate(id) : remove(id);
@@ -109,11 +106,10 @@ export const Modal: React.FC<ModalProps> = modal => {
   return container
     ? ReactDOM.createPortal(
         <ModalContainer
-					transformDistanceX={transformDistanceX}
-					transformDistanceY={transformDistanceY} {...modal} />,
+	    transformDistanceX={transformDistanceX}
+	    transformDistanceY={transformDistanceY} {...modal} />,
         container
-      )
-    : null;
+    ) : null;
 };
 
 interface ModalContainerProps {
